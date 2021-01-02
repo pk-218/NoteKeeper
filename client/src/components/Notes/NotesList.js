@@ -9,7 +9,7 @@ export const NotesList = () => {
 
   
   useEffect(() => {
-    axios.get('http://localhost:5000/notes')
+    axios.get('https://mern-note-keeper.herokuapp.com/notes')
       .then(res => {
         console.log(res)
         setNotes(res.data)
@@ -23,16 +23,8 @@ export const NotesList = () => {
     });
   }
 
-  // function deleteNote(id) {
-  //     setNotes(prevNotes => {
-  //       return prevNotes.filter((noteItem, index) => {
-  //         return index !== id;
-  //       });
-  //   });
-  // }
-
   function deleteNote(id) {
-    axios.delete('http://localhost:5000/notes/id').then(() => {
+    axios.delete('https://mern-note-keeper.herokuapp.com/notes/id').then(() => {
       setNotes(prevNotes => {
         return prevNotes.filter((noteItem, index) => {
           return index !== id;

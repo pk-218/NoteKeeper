@@ -36,7 +36,7 @@ export const CreateNote = (props) => {
           title: "",
           content: ""
         });
-      axios.post("http://localhost:5000/notes/add", note) // sends data to the API endpoint
+      axios.post("https://mern-note-keeper.herokuapp.com/notes/add", note) // sends data to the API endpoint
           .then(res => console.log(res))
           .catch(err => console.log(err));
     }
