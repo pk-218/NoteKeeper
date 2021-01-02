@@ -24,11 +24,9 @@ export const NotesList = () => {
   }
 
   function deleteNote(id) {
-    axios.delete('https://mern-note-keeper.herokuapp.com/notes/id').then(() => {
+    axios.delete('https://mern-note-keeper.herokuapp.com/notes/' + id).then(() => {
       setNotes(prevNotes => {
-        return prevNotes.filter((noteItem, index) => {
-          return index !== id;
-        });
+        return prevNotes.filter((note) => note._id !== id);
       });
     });
   }
@@ -40,7 +38,7 @@ export const NotesList = () => {
         return (
           <Note
             key={index}
-            id={index}
+            id={noteItem._id}
             title={noteItem.title}
             content={noteItem.content}
             onDelete={deleteNote}
