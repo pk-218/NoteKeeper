@@ -23,13 +23,19 @@ export const NotesList = () => {
     });
   }
 
+  // TOFIX
   function deleteNote(id) {
-    axios.delete('https://mern-note-keeper.herokuapp.com/notes/' + id).then(() => {
+    var toDelete = "https://mern-note-keeper.herokuapp.com/notes/" + id
+    console.log(toDelete);
+    axios.delete(toDelete).then(() => {
       setNotes(prevNotes => {
         return prevNotes.filter((note) => note._id !== id);
       });
     });
   }
+
+  // TODO
+  // Add patch functionality
 
   return(
     <div>

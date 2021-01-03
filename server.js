@@ -5,23 +5,24 @@ const path = require("path");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;  // running the app on any one of the available ports on Heroku
 
 app.use(express.json());
-app.use(cors());
+app.use(cors());  
 
 mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true});
 const db = mongoose.connection;
-
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once("open", () => {
-  console.log("Successfully connected to the Database.");
+  console.log("Successfully connected to the database.");
 });
 
+// using the routes mentioned in router
 const notesRouter = require('./routes/notes');
 app.use('/notes', notesRouter);
 
-if(process.env.NODE_ENV === 'production') {
+// load index.html from build folder of client when in production
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 
   app.get('*', function(req, res) {
