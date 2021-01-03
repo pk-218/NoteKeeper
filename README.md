@@ -38,4 +38,4 @@ With the help of concurrently dependency, now both client and server can run loc
 ```
 npm run dev
 ```
-Your app with now run on localhost:3000
+Your app will now run on localhost:3000
