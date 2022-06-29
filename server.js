@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;  // running the app on any one of the ava
 app.use(express.json());
 app.use(cors());  
 
-mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true});
+mongoose.connect("mongodb://admin:secret@127.0.0.1:27017/notesDB", {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once("open", () => {
