@@ -1,34 +1,33 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Note } from './Note';
-import { CreateNote } from './CreateNote';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Note } from "./Note";
+import { CreateNote } from "./CreateNote";
 
 export const NotesList = () => {
-  
   const [notes, setNotes] = useState([]);
 
-  
   useEffect(() => {
-    axios.get('https://mern-note-keeper.herokuapp.com/notes')
-      .then(res => {
-        console.log(res)
-        setNotes(res.data)
+    axios
+      .get("http://localhost:5000/notes/")
+      .then((res) => {
+        console.log(res);
+        setNotes(res.data);
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
 
   function addNote(newNote) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
       return [...prevNotes, newNote];
     });
   }
 
   // TOFIX
   function deleteNote(id) {
-    var toDelete = "https://mern-note-keeper.herokuapp.com/notes/" + id
+    var toDelete = "http://localhost:5000/notes/" + id;
     console.log(toDelete);
     axios.delete(toDelete).then(() => {
-      setNotes(prevNotes => {
+      setNotes((prevNotes) => {
         return prevNotes.filter((note) => note._id !== id);
       });
     });
@@ -37,7 +36,7 @@ export const NotesList = () => {
   // TODO
   // Add patch functionality
 
-  return(
+  return (
     <div>
       <CreateNote onAdd={addNote} />
       {notes.map((noteItem, index) => {
@@ -52,5 +51,5 @@ export const NotesList = () => {
         );
       })}
     </div>
-  )
-} 
+  );
+};
